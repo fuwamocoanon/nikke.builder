@@ -51,13 +51,3 @@ function prevImage(tableId, index) {
 document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
-
-// 儲存資料到本地存儲
-localStorage.setItem('data', JSON.stringify(yourData));
-
-// 從本地存儲中讀取資料
-var data = JSON.parse(localStorage.getItem('data'));
-
-// 在重新整理後將資料還原到頁面上
-// ...
-
