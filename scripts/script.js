@@ -52,48 +52,26 @@ document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
 
-// 檢查是否存在之前儲存的資料
-function checkStoredData() {
-  var storedData = getCookieValue('pageData');
-  if (storedData) {
-    // 還原頁面資料
-    var data = JSON.parse(storedData);
-    // TODO: 使用還原的資料進行相關操作
-    console.log('還原的資料:', data);
-  } else {
-    // 不存在儲存的資料
-    console.log('無儲存的資料');
+// 恢复所有表格的图片切换状态
+for (var i = 1; i <= 66; i++) {
+  var tableId = "table" + i;
+  var tableState = JSON.parse(localStorage.getItem(tableId + "State"));
+  if (tableState) {
+    var currentImageId = tableState.currentImage;
+    var currentImage = document.getElementById(tableId).querySelector("#" + currentImageId);
+    var currentThumb = document.getElementById(tableId).querySelector("#" + currentImageId.replace("image", "thumb"));
+    currentImage.style.display = "block";
+    currentThumb.style.display = "none";
   }
 }
 
-// 儲存頁面資料為 cookie
-function savePageData() {
-  var data = {
-    // TODO: 取得需要儲存的頁面資料
-    // 例如：username: 'John', age: 25
-  };
-
-  var date = new Date();
-  date.setTime(date.getTime() + (60 * 24 * 60 * 60 * 1000)); // 60 天後的日期
-  var expires = date.toUTCString();
-
-  // 將資料轉換為字串並設定為 cookie
-  document.cookie = 'pageData=' + JSON.stringify(data) + '; expires=' + expires + '; path=/';
-
-  console.log('儲存頁面資料成功');
-}
-
-// 取得 cookie 值
-function getCookieValue(cookieName) {
-  var cookies = document.cookie.split(';');
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i].trim();
-    if (cookie.startsWith(cookieName + '=')) {
-      return cookie.substring(cookieName.length + 1);
-    }
+// 监听页面刷新事件，在页面刷新前保存所有表格的图片切换状态数据到本地存储
+window.addEventListener("beforeunload", function () {
+  for (var i = 1; i <= 66; i++) {
+    var tableId = "table" + i;
+    var currentState = {
+      currentImage: document.getElementById(tableId).querySelector(".image:not(.hidden)").id
+    };
+    localStorage.setItem(tableId + "State", JSON.stringify(currentState));
   }
-  return null;
-}
-
-// 網頁載入時檢查儲存的資料
-checkStoredData();
+});
