@@ -52,38 +52,38 @@ document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
 
-// 檢查是否存在之前保存的數據
+// 檢查是否存在之前儲存的資料
 function checkStoredData() {
   var storedData = getCookieValue('pageData');
   if (storedData) {
-    // 恢復頁面數據
+    // 還原頁面資料
     var data = JSON.parse(storedData);
-    // TODO: 使用恢復的數據進行相關操作
-    console.log('恢復的數據:', data);
+    // TODO: 使用還原的資料進行相關操作
+    console.log('還原的資料:', data);
   } else {
-    // 不存在保存的數據
-    console.log('無保存的數據');
+    // 不存在儲存的資料
+    console.log('無儲存的資料');
   }
 }
 
-// 保存頁面數據爲 cookie
+// 儲存頁面資料為 cookie
 function savePageData() {
   var data = {
-    // TODO: 獲取需要保存的頁面數據
+    // TODO: 取得需要儲存的頁面資料
     // 例如：username: 'John', age: 25
   };
 
   var date = new Date();
-  date.setTime(date.getTime() + (60 * 24 * 60 * 60 * 1000)); // 60 天后的日期
+  date.setTime(date.getTime() + (60 * 24 * 60 * 60 * 1000)); // 60 天後的日期
   var expires = date.toUTCString();
 
-  // 將數據轉換爲字符串並設置爲 cookie
+  // 將資料轉換為字串並設定為 cookie
   document.cookie = 'pageData=' + JSON.stringify(data) + '; expires=' + expires + '; path=/';
 
-  console.log('保存頁面數據成功');
+  console.log('儲存頁面資料成功');
 }
 
-// 獲取 cookie 值
+// 取得 cookie 值
 function getCookieValue(cookieName) {
   var cookies = document.cookie.split(';');
   for (var i = 0; i < cookies.length; i++) {
@@ -95,5 +95,5 @@ function getCookieValue(cookieName) {
   return null;
 }
 
-// 頁面加載時檢查保存的數據
+// 網頁載入時檢查儲存的資料
 checkStoredData();
