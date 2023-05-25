@@ -5,7 +5,7 @@ function screenshot() {
         document.body.appendChild(canvas);
         var a = document.createElement('a');
         a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        a.download = 'NIKKE_Select.png';
+        a.download = 'MyNIKKE.png';
         a.click();
         document.body.removeChild(canvas);
     });
