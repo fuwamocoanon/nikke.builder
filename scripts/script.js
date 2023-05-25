@@ -51,3 +51,49 @@ function prevImage(tableId, index) {
 document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
+
+// 檢查是否存在之前保存的數據
+function checkStoredData() {
+  var storedData = getCookieValue('pageData');
+  if (storedData) {
+    // 恢復頁面數據
+    var data = JSON.parse(storedData);
+    // TODO: 使用恢復的數據進行相關操作
+    console.log('恢復的數據:', data);
+  } else {
+    // 不存在保存的數據
+    console.log('無保存的數據');
+  }
+}
+
+// 保存頁面數據爲 cookie
+function savePageData() {
+  var data = {
+    // TODO: 獲取需要保存的頁面數據
+    // 例如：username: 'John', age: 25
+  };
+
+  var date = new Date();
+  date.setTime(date.getTime() + (60 * 24 * 60 * 60 * 1000)); // 60 天后的日期
+  var expires = date.toUTCString();
+
+  // 將數據轉換爲字符串並設置爲 cookie
+  document.cookie = 'pageData=' + JSON.stringify(data) + '; expires=' + expires + '; path=/';
+
+  console.log('保存頁面數據成功');
+}
+
+// 獲取 cookie 值
+function getCookieValue(cookieName) {
+  var cookies = document.cookie.split(';');
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+    if (cookie.startsWith(cookieName + '=')) {
+      return cookie.substring(cookieName.length + 1);
+    }
+  }
+  return null;
+}
+
+// 頁面加載時檢查保存的數據
+checkStoredData();
