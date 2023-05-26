@@ -110,7 +110,7 @@ button {
     background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
     outline-offset: .1em;
     transition: background-size .4s, background-position 0s .4s;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     padding: .1em .6em;
     font-weight: bold;
