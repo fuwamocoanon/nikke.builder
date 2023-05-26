@@ -18,9 +18,10 @@ body {
 }
 
 #main {
+    font-size: 1.2rem;
     margin-left: 130px;
     margin-right: 130px;
-    height: 1770px;
+    height: 1800px;
     background-color: #FFFFFF;
     text-align: center;
 }
@@ -60,7 +61,7 @@ body {
     line-height: 30px;
     margin-left: 130px;
     margin-right: 130px;
-    height: 60px;
+    height: 65px;
     background-color: #FFFFFF;
     text-align: center;
 }
@@ -92,4 +93,38 @@ select::-ms-expand {
         background: none\9;
         padding: 5px\9;
     }
+}
+
+/*按鈕樣式*/
+button {
+    --c: #000000;
+    /* the color*/
+
+    box-shadow: 0 0 0 .1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background:
+        var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p, 0%)) 0%,
+        var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p, 0%)) 100%;
+    background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: .1em .6em;
+    font-weight: bold;
+    border: none;
+}
+
+button:hover {
+    --_p: 100%;
+    color: #FFFFFF;
+    transition: background-position .4s, background-size 0s;
+}
+
+button:active {
+    box-shadow: 0 0 9e9q inset #0009;
+    background-color: var(--c);
+    color: #FFFFFF;
 }
