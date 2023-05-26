@@ -51,3 +51,16 @@ function prevImage(tableId, index) {
 document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
+
+//日期與時間
+function updateTime() {
+  var now = new Date();
+  var date = now.toLocaleDateString();
+  var time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+
+  document.getElementById('date').innerHTML = date;
+  document.getElementById('time').innerHTML = time;
+}
+
+// 更新時間，每秒執行一次
+setInterval(updateTime, 1000);
