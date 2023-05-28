@@ -1,3 +1,37 @@
+// 讀取localStorage中的數據
+var savedData = localStorage.getItem("imageData");
+var defaultData = {};
+var numTables = 66;
+var numImagesPerTable = 12;
+
+
+// 設置默認的圖片顯示狀態
+for (var i = 1; i <= numTables; i++) {
+  var tableData = {};
+  for (var j = 1; j <= numImagesPerTable; j++) {
+    var imageId = "image" + j;
+    tableData[imageId] = (j === 1); // 設置第一個圖片爲可見，其他圖片爲隱藏
+  }
+  tableData["imagea"] = true; // 設置imagea爲可見
+  var tableId = "table" + i;
+  defaultData[tableId] = tableData;
+}
+var imageData = savedData ? JSON.parse(savedData) : defaultData;
+
+// 恢復圖片顯示狀態
+for (var tableId in imageData) {
+  if (imageData.hasOwnProperty(tableId)) {
+    var tableData = imageData[tableId];
+    for (var imageId in tableData) {
+      if (tableData.hasOwnProperty(imageId)) {
+        var isVisible = tableData[imageId];
+        var imageElement = document.getElementById(tableId).querySelector("#" + imageId);
+        imageElement.style.display = isVisible ? "block" : "none";
+      }
+    }
+  }
+}
+
 function changeImage(tableId, index) {
   var currentImageId = "image" + index;
   var nextImageIndex = parseInt(index) + 1;
@@ -20,6 +54,10 @@ function changeImage(tableId, index) {
   nextImage.style.display = "block";
   currentThumb.style.display = "none";
   nextThumb.style.display = "block";
+
+  // 將圖片顯示狀態儲存到本地存儲中
+  var imageData = getImageData();
+  localStorage.setItem("imageData", JSON.stringify(imageData));
 }
 
 function prevImage(tableId, index) {
@@ -45,6 +83,104 @@ function prevImage(tableId, index) {
   currentThumb.style.display = "none";
   prevThumb.style.display = "block";
 
+  // 將圖片顯示狀態儲存到本地存儲中
+  var imageData = getImageData();
+  localStorage.setItem("imageData", JSON.stringify(imageData));
+
+}
+
+function getImageData() {
+  var imageData = {};
+  var tables = document.getElementsByClassName("image-table");
+  for (var i = 0; i < tables.length; i++) {
+    var table = tables[i];
+    var tableId = table.id;
+    var images = table.querySelectorAll("img");
+    var tableData = {};
+    for (var j = 0; j < images.length; j++) {
+      var image = images[j];
+      var imageId = image.id;
+      var isVisible = image.style.display === "block";
+      tableData[imageId] = isVisible;
+    }
+    imageData[tableId] = tableData;
+  }
+  return imageData;
+}
+
+// 為已有的下拉式選單添加唯一的id屬性
+function addUniqueIdToSelectElements() {
+  var selectElements = document.querySelectorAll("select");
+  for (var i = 0; i < selectElements.length; i++) {
+    var selectElement = selectElements[i];
+    selectElement.id = "select" + (i + 1);
+  }
+}
+
+// 在頁面載入時執行添加唯一id的函數
+window.addEventListener("DOMContentLoaded", function () {
+  addUniqueIdToSelectElements();
+});
+
+// 設置下拉式選單的初始數值
+function setInitialSelectValues() {
+  for (var i = 1; i <= 198; i++) {
+    var selectId = "select" + i;
+    var selectElement = document.getElementById(selectId);
+    var savedValue = localStorage.getItem(selectId);
+    if (savedValue !== null) {
+      selectElement.value = savedValue;
+    }
+  }
+}
+
+// 保存下拉式選單的數值到localStorage
+function saveSelectValue(selectId) {
+  var selectElement = document.getElementById(selectId);
+  var selectedValue = selectElement.value;
+  localStorage.setItem(selectId, selectedValue);
+}
+
+// 監聽下拉式選單的change事件
+function addSelectListeners() {
+  for (var i = 1; i <= 198; i++) {
+    var selectId = "select" + i;
+    var selectElement = document.getElementById(selectId);
+    selectElement.addEventListener("change", function () {
+      saveSelectValue(this.id);
+    });
+  }
+}
+
+// 在頁面載入時初始化下拉式選單
+window.addEventListener("DOMContentLoaded", function () {
+  setInitialSelectValues();
+  addSelectListeners();
+});
+
+// 添加 resetImages 函數來重置所有資料
+function resetalldata() {
+  // 獲取所有表格中的圖片元素
+  var images = document.querySelectorAll(".image-table img");
+
+  for (var i = 1; i <= 198; i++) {
+    var selectId = "select" + i;
+    var selectElement = document.getElementById(selectId);
+    selectElement.selectedIndex = 0; // 將選擇設置為第一個選項
+    localStorage.removeItem(selectId); // 刪除localStorage中的對應數據
+  }
+
+  // 將所有圖片顯示爲初始圖片
+  images.forEach(function (image) {
+    var tableId = image.closest(".image-table").id;
+    var tableData = defaultData[tableId];
+    var isVisible = tableData[image.id];
+    image.style.display = isVisible ? "block" : "none";
+  });
+
+  // 保存圖片顯示狀態到localStorage
+  var imageData = getImageData();
+  localStorage.setItem("imageData", JSON.stringify(imageData));
 }
 
 // 禁止右鍵選單
