@@ -1,27 +1,3 @@
-// 存储图像状态到 localStorage
-function saveImageState(tableId, index) {
-  var imageState = {
-    currentImageId: "image" + index
-  };
-  localStorage.setItem(tableId, JSON.stringify(imageState));
-}
-
-// 从 localStorage 中恢复图像状态
-function restoreImageState(tableId) {
-  var imageState = JSON.parse(localStorage.getItem(tableId));
-  if (imageState) {
-    var currentImageId = imageState.currentImageId;
-    var currentImage = document.getElementById(tableId).querySelector("#" + currentImageId);
-    if (currentImage) {
-      var currentIndex = currentImageId.substr(5); // 获取索引号
-      showImage(tableId, currentIndex);
-    }
-  }
-}
-
-
-
-
 function changeImage(tableId, index) {
   var currentImageId = "image" + index;
   var nextImageIndex = parseInt(index) + 1;
@@ -69,37 +45,7 @@ function prevImage(tableId, index) {
   currentThumb.style.display = "none";
   prevThumb.style.display = "block";
 
-
-
-
-  // 存储图像状态到 localStorage
-  saveImageState(tableId, nextImageIndex);
 }
-
-// 页面加载时恢复图像状态
-window.onload = function() {
-  restoreImageState("table1");
-  restoreImageState("table2");
-  restoreImageState("table3");
-  restoreImageState("table4");
-  restoreImageState("table5");
-  restoreImageState("table6");
-  restoreImageState("table7");
-  
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 // 禁止右鍵選單
 document.addEventListener('contextmenu', function (event) {
