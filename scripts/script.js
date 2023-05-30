@@ -1,7 +1,7 @@
 // 讀取localStorage中的數據
 var savedData = localStorage.getItem("imageData");
 var defaultData = {};
-var numTables = 66;
+var numTables = 67;
 var numImagesPerTable = 12;
 
 
