@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 // 設置下拉式選單的初始數值
 function setInitialSelectValues() {
-  for (var i = 1; i <= 198; i++) {
+  for (var i = 1; i <= 201; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     var savedValue = localStorage.getItem(selectId);
@@ -143,7 +143,7 @@ function saveSelectValue(selectId) {
 
 // 監聽下拉式選單的change事件
 function addSelectListeners() {
-  for (var i = 1; i <= 198; i++) {
+  for (var i = 1; i <= 201; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     selectElement.addEventListener("change", function () {
@@ -163,7 +163,7 @@ function resetalldata() {
   // 獲取所有表格中的圖片元素
   var images = document.querySelectorAll(".image-table img");
 
-  for (var i = 1; i <= 198; i++) {
+  for (var i = 1; i <= 201; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     selectElement.selectedIndex = 0; // 將選擇設置為第一個選項
