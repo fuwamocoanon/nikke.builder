@@ -108,20 +108,6 @@ function getImageData() {
   return imageData;
 }
 
-// 為已有的下拉式選單添加唯一的id屬性
-function addUniqueIdToSelectElements() {
-  var selectElements = document.querySelectorAll("select");
-  for (var i = 0; i < selectElements.length; i++) {
-    var selectElement = selectElements[i];
-    selectElement.id = "select" + (i + 1);
-  }
-}
-
-// 在頁面載入時執行添加唯一id的函數
-window.addEventListener("DOMContentLoaded", function () {
-  addUniqueIdToSelectElements();
-});
-
 // 設置下拉式選單的初始數值
 function setInitialSelectValues() {
   for (var i = 1; i <= 201; i++) {
