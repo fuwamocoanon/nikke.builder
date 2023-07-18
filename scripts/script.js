@@ -3,7 +3,7 @@ var savedData = localStorage.getItem("imageData");
 var defaultData = {};
 
 //妮姬總數
-var numTables = 69;
+var numTables = 70;
 var numImagesPerTable = 12;
 
 // 設置默認的圖片顯示狀態
@@ -111,7 +111,7 @@ function getImageData() {
 
 // 設置下拉式選單的初始數值
 function setInitialSelectValues() {
-  for (var i = 1; i <= 3*numTables; i++) {
+  for (var i = 1; i <= 3 * numTables; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     var savedValue = localStorage.getItem(selectId);
@@ -130,7 +130,7 @@ function saveSelectValue(selectId) {
 
 // 監聽下拉式選單的change事件
 function addSelectListeners() {
-  for (var i = 1; i <= 3*numTables; i++) {
+  for (var i = 1; i <= 3 * numTables; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     selectElement.addEventListener("change", function () {
@@ -149,12 +149,12 @@ window.addEventListener("DOMContentLoaded", function () {
 function resetalldata() {
   // 獲取所有表格中的圖片元素
   var images = document.querySelectorAll(".image-table img");
-
-  for (var i = 1; i <= 3*numTables; i++) {
+  for (var i = 1; i <= 3 * numTables; i++) {
     var selectId = "select" + i;
     var selectElement = document.getElementById(selectId);
     selectElement.selectedIndex = 0; // 將選擇設置為第一個選項
     localStorage.removeItem(selectId); // 刪除localStorage中的對應數據
+
   }
 
   // 將所有圖片顯示爲初始圖片
@@ -168,9 +168,14 @@ function resetalldata() {
   // 保存圖片顯示狀態到localStorage
   var imageData = getImageData();
   localStorage.setItem("imageData", JSON.stringify(imageData));
+  location.reload();
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
 }
 
 // 禁止右鍵選單
 document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });
+
