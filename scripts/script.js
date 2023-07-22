@@ -3,7 +3,7 @@ var savedData = localStorage.getItem("imageData");
 var defaultData = {};
 
 //妮姬總數
-var numTables = 70;
+var numTables = 71;
 var numImagesPerTable = 12;
 
 // 設置默認的圖片顯示狀態
