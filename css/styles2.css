@@ -107,9 +107,27 @@ body {
     font-size: 20px;
 }
 
+#container {
+    float: left;
+    width: 50%;
+    /* 将宽度设置为一半，以使其并排显示 */
+}
+
+#team-container {
+    float: left;
+    width: 50%;
+    /* 将宽度设置为一半，以使其并排显示 */
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 #team-images {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
     overflow-x: auto;
 }
 
@@ -117,7 +135,7 @@ body {
     margin-left: 5%;
     margin-right: 5%;
     overflow-x: auto;
-    height: 480px;
+    height: 960px;
 }
 
 #footer {
