@@ -1,29 +1,29 @@
 // 禁止右鍵選單
-document.addEventListener('contextmenu', (event) => {
+document.addEventListener('contextmenu'， (event) => {
   event.preventDefault();
 });
 
 const nikketeamnum = {
-  'Burst 1': [1, 5, 20, 23, 29, 76, 35, 36, 38, 40, 41, 43, 45, 55, 51, 52, 49, 59, 50, 77, 57, 60, 62, 64],
-  'Burst 2': [3, 4, 8, 14, 12, 78, 73, 21, 31, 32, 25, 26, 27, 78, 28, 37, 39, 42, 44, 58, 24, 53, 47, 54, 67, 69, 70],
-  'Burst 3': [2, 6, 7, 9, 10, 13, 11, 16, 15, 17, 18, 22, 30, 33, 19, 34, 46, 56, 48, 72, 61, 63, 65, 66, 68, 71, 74, 75],
+  'Burst 1': [1， 5， 20， 23， 29， 76， 35， 36， 38， 40， 41， 43， 45， 55， 51， 52， 49， 59， 50， 78， 57， 60， 62， 64]，
+  'Burst 2': [3， 4， 8， 14， 12， 77， 73， 21， 31， 32， 25， 26， 27， 78， 28， 37， 39， 42， 44， 58， 24， 53， 47， 54， 67， 69， 70]，
+  'Burst 3': [2， 6， 7， 9， 10， 13， 11， 16， 15， 17， 18， 22， 30， 33， 19， 34， 46， 56， 48， 72， 61， 63， 65， 66， 68， 71， 74， 75]，
 };
 
-const Burst = ['Burst 1', 'Burst 2', 'Burst 3'];
+const Burst = ['Burst 1'， 'Burst 2'， 'Burst 3'];
 const BurstLen = Burst.length;
 
 const nikketeam = {};
 
 class NikkeTeamImage {
-  constructor(imageUrl, width, height) {
-    this.imageUrl = imageUrl;
-    this.image = new Image();
-    this.image.src = this.imageUrl;
-    this.image.width = width;
-    this.image.height = height;
-    this.image.addEventListener('dragstart', (event) => {
-      event.dataTransfer.setData('text/plain', this.imageUrl);
-      event.dataTransfer.effectAllowed = 'move';
+  constructor(imageUrl， width， height) {
+    this。imageUrl = imageUrl;
+    this。image = new Image();
+    this。image。src = this。imageUrl;
+    this。image。width = width;
+    this。image。height = height;
+    this。image。addEventListener('dragstart'， (event) => {
+      event.dataTransfer。setData('text/plain'， this。imageUrl);
+      event.dataTransfer。effectAllowed = 'move';
     });
   }
 }
