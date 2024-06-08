@@ -114,4 +114,5 @@ function resetalldata() {
     // 清除所有儲存的資料
 	// Clear all saved data
     localStorage.clear();
+	sessionStorage.clear();
 }
