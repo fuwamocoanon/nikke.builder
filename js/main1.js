@@ -4,6 +4,8 @@ document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
 });
 
+const githubRepoBaseUrl = 'https://raw.githubusercontent.com/fuwamocoanon/nikke.builder/tree/main/images/character'
+
 const nikkenum = {
   'Elysion': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 11, 16, 12, 76, 79, 15, 73, 88, 90],
   'Missilis': [17, 18, 20, 21, 22, 29, 30, 31, 32, 33, 19, 25, 26, 27, 23, 77, 78, 82, 28, 89, 95, 96],
@@ -124,9 +126,9 @@ class NikkeImage {
 
   updateImageURL(num) {
     if (this.clickCount === 0) {
-      this.imageUrl = `images/character/image${num}b.webp`;
+      this.imageUrl = `${githubRepoBaseUrl}${num}b.webp`;
     } else {
-      this.imageUrl = `images/character/image${num}.webp`;
+      this.imageUrl = `${githubRepoBaseUrl}${num}.webp`;
     }
     this.image.src = this.imageUrl;
   }
@@ -138,6 +140,8 @@ function displayNikkeImages() {
   for (let i = 0; i < MFRLen; i++) {
     const MFRDiv = document.createElement('div');
     MFRDiv.classList.add('MFRDiv');
+
+
 
     // 創建 MFR 標題元素 | Create an MFR Header Element
     const MFRTitle = document.createElement('h2');
@@ -156,7 +160,7 @@ function displayNikkeImages() {
       const imageStarContainer = document.createElement('div');
       imageStarContainer.classList.add('imageStarContainer');
 
-      const nikkeImage = new NikkeImage(`images/character/image${num}b.webp`, 70, 70);
+      const nikkeImage = new NikkeImage(`${githubRepoBaseUrl}${num}b.webp`, 70, 70);
       const starImage = new Image();
       starImage.classList.add('starImage');
       starImage.src = "images/others/star0.webp";
