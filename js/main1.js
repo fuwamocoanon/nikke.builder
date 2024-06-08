@@ -1,10 +1,11 @@
 // 禁止右鍵選單
+// Disable right click menu
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
 });
 
 const nikkenum = {
-  'Elysion': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 11, 16, 12, 76, 79, 15, 73],
+  'Elysion': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 11, 16, 12, 76, 79, 15, 73, 88],
   'Missilis': [17, 18, 20, 21, 22, 29, 30, 31, 32, 33, 19, 25, 26, 27, 23, 77, 78, 82, 28],
   'Tetra': [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 55, 56, 58, 24, 51, 52, 53, 49, 59, 47, 48, 50, 54, 86, 87, 57, 60, 72, 83, 84],
   'Pilgrim': [61, 62, 63, 65, 66, 67, 68, 69, 64, 80, 81, 85],
@@ -12,6 +13,7 @@ const nikkenum = {
 };
 
 // 使用解構賦值將容器長度儲存到相對應的變數中
+// Use the deconstructed value to store the container length in the corresponding variable.
 const { Elysion, Missilis, Tetra, Pilgrim, Abnormal } = nikkenum;
 const ElysionLen = Elysion.length;
 const MissilisLen = Missilis.length;
@@ -39,8 +41,8 @@ class NikkeImage {
     this.imageUrl = imageUrl;
     this.image = new Image();
     this.image.src = this.imageUrl;
-    this.image.width = width; // 設定圖像寬度
-    this.image.height = height; // 設定圖像高度
+    this.image.width = width; // 設定圖像寬度 | Set image width
+    this.image.height = height; // 設定圖像高度 | Set image height
     this.clickCount = 0;
     this.image.draggable = false;
   }
@@ -72,12 +74,13 @@ class NikkeImage {
     starImage.src = imagePath;
 
     // 解鎖或鎖定相應的下拉式選單
+	// Unlock or lock the corresponding drop-down menus
     const imageStarContainer = starImage.parentElement;
     const selectElements = imageStarContainer.querySelectorAll('select');
     for (const selectElement of selectElements) {
       selectElement.disabled = this.clickCount === 0;
       if (this.clickCount === 0) {
-        selectElement.value = '1'; // 將下拉式選單的值設為預設值(1)
+        selectElement.value = '1'; // 將下拉式選單的值設為預設值(1) | Set the value of the drop-down menu to the default value (1)
       }
     }
   }
@@ -108,12 +111,13 @@ class NikkeImage {
     }
 
     // 解鎖或鎖定相應的下拉式選單
+	// Unlock or lock the corresponding drop-down menus
     const imageStarContainer = starImage.parentElement;
     const selectElements = imageStarContainer.querySelectorAll('select');
     for (const selectElement of selectElements) {
       selectElement.disabled = this.clickCount === 0;
       if (this.clickCount === 0) {
-        selectElement.value = '1'; // 將下拉式選單的值設為預設值(1)
+        selectElement.value = '1'; // 將下拉式選單的值設為預設值(1) |  Set the value of the drop-down menu to the default value (1)
       }
     }
   }
@@ -135,7 +139,7 @@ function displayNikkeImages() {
     const MFRDiv = document.createElement('div');
     MFRDiv.classList.add('MFRDiv');
 
-    // 創建 MFR 標題元素
+    // 創建 MFR 標題元素 | Create an MFR Header Element
     const MFRTitle = document.createElement('h2');
     const MFRImage = document.createElement('img');
     MFRImage.src = `images/others/MFR${i}.webp`;
@@ -145,7 +149,7 @@ function displayNikkeImages() {
     MFRImage.draggable = false;
     MFRTitle.appendChild(MFRImage);
 
-    // 將 MFR 標題元素添加到 MFRDiv
+    // 將 MFR 標題元素添加到 MFRDiv | Add MFR header element to MFRDiv
     MFRDiv.appendChild(MFRTitle);
 
     for (const num of nikkenum[MFR[i]]) {
@@ -163,6 +167,7 @@ function displayNikkeImages() {
       imageStarContainer.appendChild(starImage);
 
       // 建立下拉式選單
+	  // Create a drop-down menu
       const selectElement = document.createElement('select');
       for (let optionValue = 1; optionValue <= 10; optionValue++) {
         const option = document.createElement('option');
@@ -172,9 +177,11 @@ function displayNikkeImages() {
       }
 
       // 設定下拉式選單的鎖定狀態
+	  // Setting the lock status of a drop-down menu
       selectElement.disabled = nikkeImage.clickCount === 0;
 
       // 將三個下拉式選單添加到 imageStarContainer
+	  // Add three drop-down menus to the imageStarContainer.
       for (let j = 0; j < 3; j++) {
         imageStarContainer.appendChild(selectElement.cloneNode(true));
       }
@@ -187,7 +194,7 @@ function displayNikkeImages() {
         } else {
           nikkeImage.toggleStarImage(starImage);
         }
-        //nikkeImage.toggleStarImage(starImage);
+        //nikkeImage.toggleStarImage(starImage); //??? Guess this breaks something no clue
         nikkeImage.updateImageURL(num);
       });
 
@@ -198,7 +205,7 @@ function displayNikkeImages() {
         } else {
           nikkeImage.toggleStarImageM(starImage);
         }
-        //nikkeImage.toggleStarImageM(starImage);
+        //nikkeImage.toggleStarImageM(starImage); //??? Guess this breaks something no clue
         nikkeImage.updateImageURL(num);
       });
 
@@ -207,15 +214,17 @@ function displayNikkeImages() {
 
     nikkeContainer.appendChild(MFRDiv);
     // 創建分隔符號 <hr>，並將其添加到 MFRContainer 後面
+	// Create a separator <hr> and add it to the back of the MFRContainer.
     if (i < MFRLen - 1) {
       const separator = document.createElement('hr');
-      separator.classList.add('separator'); // 新增CSS類名
+      separator.classList.add('separator'); // 新增CSS類名 | Add CSS class name
       nikkeContainer.appendChild(separator);
     }
   }
 }
 
 // 反轉功能提示視窗
+// Reverse Function Alert Window
 const Toast = Swal.mixin({
   toast: true,
   position: 'top',
@@ -231,12 +240,14 @@ var reverseCheckbox = document.getElementById('reverseCheckbox');
 reverseCheckbox.addEventListener('change', function () {
   if (reverseCheckbox.checked) {
     // 被勾選時顯示警告視窗
+	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
       title: '已反轉左右鍵'
     });
   } else {
     // 未勾選時顯示普通視窗
+	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
       title: '已取消反轉左右鍵'
@@ -245,14 +256,15 @@ reverseCheckbox.addEventListener('change', function () {
 });
 
 //顯示統計資料
+//Display Statistics
 function showdata() {
   Swal.fire({
     icon: 'info',
     title: '收藏進度',
     html: 'SSR數量：' + clknum + '<br><br>突破三以上：' + starnum + '<br><br>已擁有比例：' + collectnum + '／' + allnikkeLen + '<br><br>',
-    buttonsStyling: false, // 關閉按鈕自訂樣式開關
+    buttonsStyling: false, // 關閉按鈕自訂樣式開關 | Off Button Custom Style Switch
     customClass: {
-      closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式
+      closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式 | Set the style of the Close button to a customized style.
     }
   });
 }
@@ -264,9 +276,9 @@ function showdata() {
     html: 'SSR數量：' + clknum + '<br><br>突破三以上：' + starnum + '<br><br>已擁有比例：' + collectnum + '／' + allnikkeLen +
       '<br><br>極樂淨土：' + Elysionnum + '／' + ElysionLen + '<br><br>米西利斯：' + Missilisnum + '／' + MissilisLen + '<br><br>泰特拉：' + Tetranum + '／' + TetraLen +
       '<br><br>朝聖者：' + Pilgrimnum + '／' + PilgrimLen + '<br><br>反常：' + Abnormalnum + '／' + AbnormalLen,
-    buttonsStyling: false, // 關閉按鈕自訂樣式開關
+    buttonsStyling: false, // 關閉按鈕自訂樣式開關 | Off Button Custom Style Switch
     customClass: {
-      closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式
+      closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式 | Set the style of the Close button to a customized style.
     }
   });
 }*/

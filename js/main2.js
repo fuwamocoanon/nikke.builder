@@ -1,4 +1,5 @@
 // 禁止右鍵選單
+// Disable right-click menu
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
 });
@@ -6,7 +7,7 @@ document.addEventListener('contextmenu', (event) => {
 const nikketeamnum = {
   'Burst 1': [1, 5, 20, 29, 23, 78, 82, 35, 36, 38, 40, 41, 43, 45, 55, 51, 52, 49, 59, 50, 87, 57, 60, 84, 62, 64],
   'Burst 2': [3, 4, 8, 14, 12, 76, 73, 21, 31, 32, 25, 26, 27, 77, 28, 37, 39, 42, 44, 58, 24, 53, 47, 54, 86, 67, 69, 70],
-  'Burst 3': [2, 6, 7, 9, 10, 13, 11, 16, 79, 15, 17, 18, 22, 30, 33, 19, 34, 46, 56, 48, 72, 83, 61, 63, 65, 66, 68, 80, 85, 71, 74, 75],
+  'Burst 3': [2, 6, 7, 9, 10, 13, 11, 16, 79, 15, 17, 18, 22, 30, 33, 19, 34, 46, 56, 48, 72, 83, 61, 63, 65, 66, 68, 80, 85, 71, 74, 75, 88],
   'Burst 1~3': [81],
 };
 
@@ -39,6 +40,7 @@ function displayNikkeImages1() {
     BurstDiv.classList.add('BurstDiv');
 
     // 創建 Burst 標題元素
+	// Creating the Burst header element
     const BurstTitle = document.createElement('h2');
     const BurstImage = document.createElement('img');
     BurstImage.src = `images/others/Burst${i}.webp`;
@@ -49,6 +51,7 @@ function displayNikkeImages1() {
     BurstTitle.appendChild(BurstImage);
 
     // 將 Burst 標題元素添加到 BurstDiv
+	// Adds the Burst heading element to the BurstDiv.
     BurstDiv.appendChild(BurstTitle);
 
     for (const num of nikketeamnum[Burst[i]]) {
@@ -66,9 +69,10 @@ function displayNikkeImages1() {
 
     nikkeContainer.appendChild(BurstDiv);
     // 創建分隔符號 <hr>，並將其添加到 BurstContainer 後面
+	// Create the separator <hr> and add it after the BurstContainer.
     if (i < BurstLen - 1) {
       const separator = document.createElement('hr');
-      separator.classList.add('separator'); // 新增CSS類名
+      separator.classList.add('separator'); // 新增CSS類名 | Add CSS class name
       nikkeContainer.appendChild(separator);
     }
   }
@@ -78,19 +82,19 @@ function generateTable() {
   const teamImagesContainer = document.getElementById('team-images');
 
   const table = document.createElement('table');
-  table.id = 'team'; // 設定表格的 ID
-  table.style.borderCollapse = 'collapse'; // 合併邊框
+  table.id = 'team'; // 設定表格的 ID | Setting the form ID
+  table.style.borderCollapse = 'collapse'; // 合併邊框 | Merge Border
 
-  const cells = []; // 用來儲存每個格子的狀態，是否已有圖片存在
+  const cells = []; // 用來儲存每個格子的狀態，是否已有圖片存在 | Used to store the status of each grid and whether a picture already exists.
 
   for (let row = 0; row < 1; row++) {
     const tableRow = document.createElement('tr');
 
     for (let col = 0; col < 5; col++) {
       const tableCell = document.createElement('td');
-      tableCell.style.border = '3px solid gray'; // 設定邊框粗細為 1 像素
-      tableCell.style.width = '90px'; // 設定每個格子寬度
-      tableCell.style.height = '90px'; // 設定每個格子高度
+      tableCell.style.border = '3px solid gray'; // 設定邊框粗細為 1 像素 | Set the border thickness to 1 pixel
+      tableCell.style.width = '90px'; // 設定每個格子寬度 | Setting the width of each grid
+      tableCell.style.height = '90px'; // 設定每個格子高度 | Setting the height of each grid
       table.style.margin = '0 auto';
       table.style.backgroundColor = 'lightgray';
       table.style.marginBottom = '10px';
@@ -98,7 +102,7 @@ function generateTable() {
 
       cells.push({ occupied: false, image: null, cell: tableCell }); // 添加 image 屬性
 
-      // 將可拖曳的圖像放置在表格格子中
+      // 將可拖曳的圖像放置在表格格子中 | Placing a Drag-and-Drop Image in a Table Grid
       tableCell.addEventListener('dragover', (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
