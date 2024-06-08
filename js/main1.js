@@ -261,7 +261,7 @@ function showdata() {
   Swal.fire({
     icon: 'info',
     title: 'Collection Progress',
-    html: 'Number of SSRs：' + clknum + '<br><br>Higher than LB3：' + starnum + '<br><br>Total Owned：' + collectnum + '／' + allnikkeLen + '<br><br>',
+    html: 'Total SSR Pulled：' + clknum + '<br><br>Higher than LB3：' + starnum + '<br><br>Total Owned：' + collectnum + '／' + allnikkeLen + '<br><br>',
     buttonsStyling: false, // 關閉按鈕自訂樣式開關 | Off Button Custom Style Switch
     customClass: {
       closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式 | Set the style of the Close button to a customized style.
