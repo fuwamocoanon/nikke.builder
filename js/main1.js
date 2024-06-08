@@ -243,14 +243,14 @@ reverseCheckbox.addEventListener('change', function () {
 	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
-      title: '已反轉左右鍵'
+      title: 'Reversed left and right keys'
     });
   } else {
     // 未勾選時顯示普通視窗
 	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
-      title: '已取消反轉左右鍵'
+      title: 'Reverse left and right buttons have been canceled.'
     });
   }
 });
@@ -260,8 +260,8 @@ reverseCheckbox.addEventListener('change', function () {
 function showdata() {
   Swal.fire({
     icon: 'info',
-    title: '收藏進度',
-    html: 'SSR數量：' + clknum + '<br><br>突破三以上：' + starnum + '<br><br>已擁有比例：' + collectnum + '／' + allnikkeLen + '<br><br>',
+    title: 'Collection Progress',
+    html: 'Number of SSRs：' + clknum + '<br><br>Higher than LB3：' + starnum + '<br><br>Total Owned：' + collectnum + '／' + allnikkeLen + '<br><br>',
     buttonsStyling: false, // 關閉按鈕自訂樣式開關 | Off Button Custom Style Switch
     customClass: {
       closeButton: 'swal2-close', // 設定關閉按鈕的樣式為自訂樣式 | Set the style of the Close button to a customized style.
