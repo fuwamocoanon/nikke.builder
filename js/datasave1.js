@@ -115,10 +115,10 @@ function resetalldata() {
 	// Clear all saved data
     localStorage.clear();
 	sessionStorage.clear();
-	indexedDB.databases().then((databases) => {
-      databases.forEach((db) => {
-        indexedDB.deleteDatabase(db.name);
-      });
+//	indexedDB.databases().then((databases) => {
+//      databases.forEach((db) => {
+//        indexedDB.deleteDatabase(db.name);
+//      });
     document.cookie.split(";").forEach(function(c) { 
       document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
     });
