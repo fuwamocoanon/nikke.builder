@@ -243,14 +243,14 @@ reverseCheckbox.addEventListener('change', function () {
 	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
-      title: 'Reversed left and right keys'
+      title: 'Reversed left and right click'
     });
   } else {
     // 未勾選時顯示普通視窗
 	// Show warning window when checked
     Toast.fire({
       icon: 'warning',
-      title: 'Reverse left and right buttons have been canceled.'
+      title: 'Reversing left and right click has been disabled.'
     });
   }
 });
