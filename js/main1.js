@@ -139,35 +139,34 @@ function displayNikkeImages() {
     const MFRDiv = document.createElement('div');
     MFRDiv.classList.add('MFRDiv');
 
-    // 創建 MFR 標題元素 | Create an MFR Header Element
+    // Create MFR Header Element
     const MFRTitle = document.createElement('h2');
     const MFRImage = document.createElement('img');
-    MFRImage.src = `images/others/MFR${i}.webp`;
+    MFRImage.src = `images/others/MFR${i}.webp?v=1.0`;
     MFRImage.width = 70;
     MFRImage.height = 70;
     MFRImage.title = MFR[i];
     MFRImage.draggable = false;
     MFRTitle.appendChild(MFRImage);
 
-    // 將 MFR 標題元素添加到 MFRDiv | Add MFR header element to MFRDiv
+    // Add MFR header element to MFRDiv
     MFRDiv.appendChild(MFRTitle);
 
     for (const num of nikkenum[MFR[i]]) {
       const imageStarContainer = document.createElement('div');
       imageStarContainer.classList.add('imageStarContainer');
 
-      const nikkeImage = new NikkeImage(`images/character/image${num}b.webp`, 70, 70);
+      const nikkeImage = new NikkeImage(`images/character/image${num}b.webp?v=1.0`, 70, 70);
       const starImage = new Image();
       starImage.classList.add('starImage');
-      starImage.src = "images/others/star0.webp";
+      starImage.src = "images/others/star0.webp?v=1.0";
       starImage.alt = "star";
       starImage.draggable = false;
 
       imageStarContainer.appendChild(nikkeImage.image);
       imageStarContainer.appendChild(starImage);
 
-      // 建立下拉式選單
-	  // Create a drop-down menu
+      // Create a drop-down menu
       const selectElement = document.createElement('select');
       for (let optionValue = 1; optionValue <= 10; optionValue++) {
         const option = document.createElement('option');
@@ -176,12 +175,10 @@ function displayNikkeImages() {
         selectElement.appendChild(option);
       }
 
-      // 設定下拉式選單的鎖定狀態
-	  // Setting the lock status of a drop-down menu
+      // Setting the lock status of a drop-down menu
       selectElement.disabled = nikkeImage.clickCount === 0;
 
-      // 將三個下拉式選單添加到 imageStarContainer
-	  // Add three drop-down menus to the imageStarContainer.
+      // Add three drop-down menus to the imageStarContainer.
       for (let j = 0; j < 3; j++) {
         imageStarContainer.appendChild(selectElement.cloneNode(true));
       }
@@ -194,7 +191,6 @@ function displayNikkeImages() {
         } else {
           nikkeImage.toggleStarImage(starImage);
         }
-        //nikkeImage.toggleStarImage(starImage); //??? Guess this breaks something no clue
         nikkeImage.updateImageURL(num);
       });
 
@@ -205,7 +201,6 @@ function displayNikkeImages() {
         } else {
           nikkeImage.toggleStarImageM(starImage);
         }
-        //nikkeImage.toggleStarImageM(starImage); //??? Guess this breaks something no clue
         nikkeImage.updateImageURL(num);
       });
 
@@ -213,11 +208,11 @@ function displayNikkeImages() {
     }
 
     nikkeContainer.appendChild(MFRDiv);
-    // 創建分隔符號 <hr>，並將其添加到 MFRContainer 後面
-	// Create a separator <hr> and add it to the back of the MFRContainer.
+
+    // Create a separator <hr> and add it to the back of the MFRContainer.
     if (i < MFRLen - 1) {
       const separator = document.createElement('hr');
-      separator.classList.add('separator'); // 新增CSS類名 | Add CSS class name
+      separator.classList.add('separator');
       nikkeContainer.appendChild(separator);
     }
   }
@@ -310,4 +305,10 @@ function enlargeHeader() {
 function resetHeader() {
   var header = document.querySelector(".fixed-header");
   header.style.transform = "scale(1)";
+}
+
+function refreshNikkeImages() {
+  const nikkeContainer = document.getElementById('nikke-images');
+  nikkeContainer.innerHTML = ''; // Clear previous content
+  displayNikkeImages(); // Call to display updated images
 }
