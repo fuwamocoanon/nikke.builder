@@ -9,7 +9,7 @@ const nikkenum = {
   'Missilis': [17, 18, 20, 21, 22, 29, 30, 31, 32, 33, 19, 25, 26, 27, 23, 77, 78, 82, 28, 89, 95, 96],
   'Tetra': [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 55, 56, 58, 24, 51, 52, 53, 49, 59, 47, 48, 50, 54, 86, 87, 57, 60, 72, 83, 84, 93, 97, 98],
   'Pilgrim': [61, 62, 63, 65, 66, 67, 68, 69, 64, 80, 81, 85, 94],
-  'Abnormal': [70, 71, 74, 75, 91, 92, 100],
+  'Abnormal': [70, 71, 74, 75, 91, 92],
 };
 
 // 使用解構賦值將容器長度儲存到相對應的變數中
@@ -310,5 +310,4 @@ function resetHeader() {
 function refreshNikkeImages() {
   const nikkeContainer = document.getElementById('nikke-images');
   nikkeContainer.innerHTML = ''; // Clear previous content
-  displayNikkeImages(); // Call to display updated images
 }

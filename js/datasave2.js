@@ -1,7 +1,7 @@
 // 網頁加載完成後顯示妮姬圖像，並載入使用者的操作資料
 // After loading the web page, it displays the image of Nikki and loads the user's operation data.
 window.onload = function () {
-    refreshNikkeImages();
+//    refreshNikkeImages();
     displayNikkeImages1();
     generateInitialTables()
 };
