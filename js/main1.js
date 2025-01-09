@@ -15,13 +15,14 @@ const nikkenum = {
 
 // 使用解構賦值將容器長度儲存到相對應的變數中
 // Use the deconstructed value to store the container length in the corresponding variable.
-const { Elysion, Missilis, Tetra, Pilgrim, Abnormal } = nikkenum;
+const { Elysion, Missilis, Tetra, Pilgrim,Overspec, Abnormal } = nikkenum;
 const ElysionLen = Elysion.length;
 const MissilisLen = Missilis.length;
 const TetraLen = Tetra.length;
 const PilgrimLen = Pilgrim.length;
+const OverspecLen = Overspec.length;
 const AbnormalLen = Abnormal.length;
-const allnikkeLen = ElysionLen + MissilisLen + TetraLen + PilgrimLen + AbnormalLen;
+const allnikkeLen = ElysionLen + MissilisLen + TetraLen + PilgrimLen + OverspecLen + AbnormalLen;
 
 const MFR = ['Elysion', 'Missilis', 'Tetra', 'Pilgrim', 'Abnormal'];
 const MFRLen = MFR.length;
